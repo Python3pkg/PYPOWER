@@ -108,7 +108,7 @@ def ext2int(ppc, val_or_field=None, ordering=None, dim=0):
 
             ## determine which buses, branches, gens are connected and
             ## in-service
-            n2i = sparse((range(nb), (ppc["bus"][:, BUS_I], zeros(nb))),
+            n2i = sparse((list(range(nb)), (ppc["bus"][:, BUS_I], zeros(nb))),
                          shape=(max(ppc["bus"][:, BUS_I]) + 1, 1))
             n2i = array( n2i.todense().flatten() )[0, :] # as 1D array
             bs = (bt != NONE)                               ## bus status

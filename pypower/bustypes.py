@@ -31,7 +31,7 @@ def bustypes(bus, gen):
     ng = gen.shape[0]
     # gen connection matrix, element i, j is 1 if, generator j at bus i is ON
     Cg = sparse((gen[:, GEN_STATUS] > 0,
-                 (gen[:, GEN_BUS], range(ng))), (nb, ng))
+                 (gen[:, GEN_BUS], list(range(ng)))), (nb, ng))
     # number of generators at each bus that are ON
     bus_gen_status = (Cg * ones(ng, int)).astype(bool)
 

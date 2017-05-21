@@ -30,8 +30,8 @@ def d2Sbr_dV2(Cbr, Ybr, V, lam):
     """
     nb = len(V)
     nl = len(lam)
-    ib = range(nb)
-    il = range(nl)
+    ib = list(range(nb))
+    il = list(range(nl))
 
     diaglam = csr_matrix((lam, (il, il)))
     diagV = csr_matrix((V, (ib, ib)))

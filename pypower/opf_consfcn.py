@@ -128,7 +128,7 @@ def opf_consfcn(x, om, Ybus, Yf, Yt, ppopt, il=None, *args):
     ## compute partials of injected bus powers
     dSbus_dVm, dSbus_dVa = dSbus_dV(Ybus, V)           ## w.r.t. V
     ## Pbus w.r.t. Pg, Qbus w.r.t. Qg
-    neg_Cg = sparse((-ones(ng), (gen[:, GEN_BUS], range(ng))), (nb, ng))
+    neg_Cg = sparse((-ones(ng), (gen[:, GEN_BUS], list(range(ng)))), (nb, ng))
 
     ## construct Jacobian of equality constraints (power flow) and transpose it
     dg = lil_matrix((2 * nb, nxyz))

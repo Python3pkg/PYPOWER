@@ -10,7 +10,7 @@ example::
     from pypower.api import runpf
 """
 
-from __future__ import absolute_import
+
 
 from .add_userfcn import add_userfcn
 from .bustypes import bustypes

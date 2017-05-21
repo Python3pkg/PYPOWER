@@ -33,7 +33,7 @@ def d2AIbr_dV2(dIbr_dVa, dIbr_dVm, Ibr, Ybr, V, lam):
     @author: Ray Zimmerman (PSERC Cornell)
     """
     # define
-    il = range(len(lam))
+    il = list(range(len(lam)))
 
     diaglam = sparse((lam, (il, il)))
     diagIbr_conj = sparse((Ibr.conj(), (il, il)))

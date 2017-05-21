@@ -55,7 +55,7 @@ def dAbr_dV(dSf_dVa, dSf_dVm, dSt_dVa, dSt_dVm, Sf, St):
 
     @author: Ray Zimmerman (PSERC Cornell)
     """
-    il = range(len(Sf))
+    il = list(range(len(Sf)))
 
     dAf_dPf = csr_matrix((2 * Sf.real, (il, il)))
     dAf_dQf = csr_matrix((2 * Sf.imag, (il, il)))

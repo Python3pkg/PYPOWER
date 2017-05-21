@@ -34,13 +34,13 @@ def poly2pwl(polycost, Pmin, Pmax, npts):
     for i in range(m):
         if Pmin[i] == 0:
             step = (Pmax[i] - Pmin[i]) / (npts - 1)
-            xx = range(Pmin[i], step, Pmax[i])
+            xx = list(range(Pmin[i], step, Pmax[i]))
         elif Pmin[i] > 0:
             step = (Pmax[i] - Pmin[i]) / (npts - 2)
-            xx = r_[0, range(Pmin[i], step, Pmax[i])]
+            xx = r_[0, list(range(Pmin[i], step, Pmax[i]))]
         elif Pmin[i] < 0 & Pmax[i] > 0:        ## for when P really means Q
             step = (Pmax[i] - Pmin[i]) / (npts - 1)
-            xx = range(Pmin[i], step, Pmax[i])
+            xx = list(range(Pmin[i], step, Pmax[i]))
         yy = totcost(polycost[i, :], xx)
         pwlcost[i,      COST:2:(COST + 2*(npts-1)    )] = xx
         pwlcost[i,  (COST+1):2:(COST + 2*(npts-1) + 1)] = yy

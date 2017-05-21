@@ -70,7 +70,7 @@ def makeAy(baseMVA, ng, gencost, pgbas, qgbas, ybas):
         c = gencost[i, COST + 1:COST + 2 * ns:2]
         m = diff(c) / diff(p)               ## slopes for Pg (or Qg)
         if any(diff(p) == 0):
-            print('makeAy: bad x axis data in row ##i of gencost matrix' % i)
+            print(('makeAy: bad x axis data in row ##i of gencost matrix' % i))
         b = m * p[:ns - 1] - c[:ns - 1]        ## and rhs
         by = r_[by,  b]
         if i > ng:
@@ -80,7 +80,7 @@ def makeAy(baseMVA, ng, gencost, pgbas, qgbas, ybas):
 
         ## FIXME: Bug in SciPy 0.7.2 prevents setting with a sequence
 #        Ay[k:k + ns - 1, sidx] = m
-        for ii, kk in enumerate(range(k, k + ns - 1)):
+        for ii, kk in enumerate(list(range(k, k + ns - 1))):
             Ay[kk, sidx] = m[ii]
 
         k = k + ns - 1

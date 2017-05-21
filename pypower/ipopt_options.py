@@ -10,7 +10,7 @@ from pypower.util import feval
 
 
 if not PY2:
-    basestring = str
+    str = str
 
 
 def ipopt_options(overrides=None, ppopt=None):
@@ -69,7 +69,7 @@ def ipopt_options(overrides=None, ppopt=None):
 
     ## second argument
     if ppopt != None:
-        if isinstance(ppopt, basestring):        ## 2nd arg is FNAME (string)
+        if isinstance(ppopt, str):        ## 2nd arg is FNAME (string)
             fname = ppopt
             have_ppopt = False
         else:                    ## 2nd arg is ppopt (MATPOWER options vector)
@@ -153,7 +153,7 @@ def ipopt_options(overrides=None, ppopt=None):
 
     ##-----  apply overrides  -----
     if overrides is not None:
-        names = overrides.keys()
+        names = list(overrides.keys())
         for k in range(len(names)):
             opt[names[k]] = overrides[names[k]]
 

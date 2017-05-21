@@ -16,7 +16,7 @@ from pypower.loadcase import loadcase
 
 
 if not PY2:
-    basestring = str
+    str = str
 
 
 def opf_args(*args):
@@ -89,7 +89,7 @@ def opf_args(*args):
 
     userfcn = array([])
     ## passing filename or dict
-    if isinstance(args[0], basestring) or isinstance(args[0], dict):
+    if isinstance(args[0], str) or isinstance(args[0], dict):
         # ----opf( baseMVA,     bus,   gen, branch, areas, gencost,    Au, lbu,  ubu, ppopt,  N, fparm, H, Cw, z0, zl, zu)
         # 12  opf(casefile,      Au,   lbu,    ubu, ppopt,       N, fparm,    H,  Cw,    z0, zl,    zu)
         # 9   opf(casefile,      Au,   lbu,    ubu, ppopt,       N, fparm,    H,  Cw)

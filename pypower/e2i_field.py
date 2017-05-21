@@ -9,7 +9,7 @@ from pypower.e2i_data import e2i_data  #@UnusedImport
 
 
 if not PY2:
-    basestring = str
+    str = str
 
 
 def e2i_field(ppc, field, ordering, dim=0):
@@ -46,7 +46,7 @@ def e2i_field(ppc, field, ordering, dim=0):
 
     @see: L{i2e_field}, L{e2i_data}, L{ext2int}
     """
-    if isinstance(field, basestring):
+    if isinstance(field, str):
         key = '["%s"]' % field
     else:
         key = '["%s"]' % '"]["'.join(field)

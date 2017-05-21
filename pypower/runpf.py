@@ -155,7 +155,7 @@ def runpf(casedata=None, ppopt=None, fname='', solvedcase=''):
                 solver = 'Gauss-Seidel'
             else:
                 solver = 'unknown'
-            print(' -- AC Power Flow (%s)\n' % solver)
+            print((' -- AC Power Flow (%s)\n' % solver))
 
         ## initial state
         # V0    = ones(bus.shape[0])            ## flat start
@@ -207,9 +207,9 @@ def runpf(casedata=None, ppopt=None, fname='', solvedcase=''):
                     if len(pv) == 0:
                         if verbose:
                             if len(mx) > 0:
-                                print('Gen %d [only one left] exceeds upper Q limit : INFEASIBLE PROBLEM\n' % mx + 1)
+                                print(('Gen %d [only one left] exceeds upper Q limit : INFEASIBLE PROBLEM\n' % mx + 1))
                             else:
-                                print('Gen %d [only one left] exceeds lower Q limit : INFEASIBLE PROBLEM\n' % mn + 1)
+                                print(('Gen %d [only one left] exceeds lower Q limit : INFEASIBLE PROBLEM\n' % mn + 1))
 
                         success = 0
                         break
@@ -227,11 +227,11 @@ def runpf(casedata=None, ppopt=None, fname='', solvedcase=''):
 
                     if verbose and len(mx) > 0:
                         for i in range(len(mx)):
-                            print('Gen ' + str(mx[i] + 1) + ' at upper Q limit, converting to PQ bus\n')
+                            print(('Gen ' + str(mx[i] + 1) + ' at upper Q limit, converting to PQ bus\n'))
 
                     if verbose and len(mn) > 0:
                         for i in range(len(mn)):
-                            print('Gen ' + str(mn[i] + 1) + ' at lower Q limit, converting to PQ bus\n')
+                            print(('Gen ' + str(mn[i] + 1) + ' at lower Q limit, converting to PQ bus\n'))
 
                     ## save corresponding limit values
                     fixedQg[mx] = gen[mx, QMAX]
@@ -256,7 +256,7 @@ def runpf(casedata=None, ppopt=None, fname='', solvedcase=''):
                     ref_temp = ref
                     ref, pv, pq = bustypes(bus, gen)
                     if verbose and ref != ref_temp:
-                        print('Bus %d is new slack bus\n' % ref)
+                        print(('Bus %d is new slack bus\n' % ref))
 
                     limited = r_[limited, mx].astype(int)
                 else:

@@ -58,7 +58,7 @@ def makeBdc(baseMVA, bus, branch):
     ## build connection matrix Cft = Cf - Ct for line and from - to buses
     f = branch[:, F_BUS]                           ## list of "from" buses
     t = branch[:, T_BUS]                           ## list of "to" buses
-    i = r_[range(nl), range(nl)]                   ## double set of row indices
+    i = r_[list(range(nl)), list(range(nl))]                   ## double set of row indices
     ## connection matrix
     Cft = sparse((r_[ones(nl), -ones(nl)], (i, r_[f, t])), (nl, nb))
 

@@ -99,7 +99,7 @@ def t_runmarket(quiet=False):
 
     i2e = r['bus'][:, BUS_I]
     e2i = sparse((max(i2e), 1))
-    e2i[i2e] = range(r['bus'].size)
+    e2i[i2e] = list(range(r['bus'].size))
     G = find( isload(r['gen']) == 0 )   ## real generators
     L = find( isload(r['gen']) )        ## dispatchable loads
     Gbus = e2i[r['gen'][G, GEN_BUS]]

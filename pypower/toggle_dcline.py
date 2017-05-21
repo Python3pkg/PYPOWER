@@ -201,20 +201,20 @@ def userfcn_dcline_ext2int(ppc, args):
             for k in range(ndc):
                 if dcc[k, MODEL] == POLYNOMIAL:
                     nc = dcc[k, NCOST]
-                    temp = dcc[k, NCOST + range(nc + 1)]
+                    temp = dcc[k, NCOST + list(range(nc + 1))]
                     ## flip sign on coefficients of odd terms
                     ## (every other starting with linear term,
                     ##  that is, the next to last one)
 #                    temp((nc-1):-2:1) = -temp((nc-1):-2:1)
-                    temp[range(nc, 0, -2)] = -temp[range(nc, 0, -2)]
+                    temp[list(range(nc, 0, -2))] = -temp[list(range(nc, 0, -2))]
                 else:  ## dcc(k, MODEL) == PW_LINEAR
                     nc = dcc[k, NCOST]
-                    temp = dcc[k, NCOST + range(2*nc + 1)]
+                    temp = dcc[k, NCOST + list(range(2*nc + 1))]
                     ## switch sign on horizontal coordinate
-                    xx = -temp[range(0, 2 * nc + 1, 2)]
-                    yy =  temp[range(1, 2 * nc + 1, 2)]
-                    temp[range(0, 2*nc + 1, 2)] = xx[-1::-1]
-                    temp[range(1, 2*nc + 1, 2)] = yy[-1::-1]
+                    xx = -temp[list(range(0, 2 * nc + 1, 2))]
+                    yy =  temp[list(range(1, 2 * nc + 1, 2))]
+                    temp[list(range(0, 2*nc + 1, 2))] = xx[-1::-1]
+                    temp[list(range(1, 2*nc + 1, 2))] = yy[-1::-1]
 
                 padding = zeros(ccc - NCOST - len(temp))
                 gck = c_[dcc[k, :NCOST + 1], temp, padding]

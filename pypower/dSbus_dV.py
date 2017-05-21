@@ -50,7 +50,7 @@ def dSbus_dV(Ybus, V):
 
     @author: Ray Zimmerman (PSERC Cornell)
     """
-    ib = range(len(V))
+    ib = list(range(len(V)))
 
     if issparse(Ybus):
         Ibus = Ybus * V

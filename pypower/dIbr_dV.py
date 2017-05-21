@@ -35,7 +35,7 @@ def dIbr_dV(branch, Yf, Yt, V):
 
     @author: Ray Zimmerman (PSERC Cornell)
     """
-    i = range(len(V))
+    i = list(range(len(V)))
 
     Vnorm = V / abs(V)
 

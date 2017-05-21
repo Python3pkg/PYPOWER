@@ -24,7 +24,7 @@ from pypower.idx_cost import MODEL, NCOST, PW_LINEAR, POLYNOMIAL
 
 
 if not PY2:
-    basestring = str
+    str = str
     writemode = "w"
 else:
     writemode = "wb"
@@ -160,7 +160,7 @@ def savecase(fname, ppc, comment=None, version='2'):
             fd.write('def %s():\n' % basename(rootname))
             prefix = 'ppc'
         if comment:
-            if isinstance(comment, basestring):
+            if isinstance(comment, str):
                 fd.write('#%s\n' % comment)
             elif isinstance(comment, list):
                 for c in comment:

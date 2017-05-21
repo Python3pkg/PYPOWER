@@ -172,7 +172,7 @@ def dcopf_solver(om, ppopt, out_opt=None):
 
     ## transform quadratic coefficients for w into coefficients for X
     nnw = any_pwl + npol + nw
-    M = sparse((ffparm[:, 3], (range(nnw), range(nnw))))
+    M = sparse((ffparm[:, 3], (list(range(nnw)), list(range(nnw)))))
     MR = M * ffparm[:, 1]
     HMR = HHw * MR
     MN = M * NN

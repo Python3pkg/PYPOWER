@@ -21,7 +21,7 @@ from pypower.idx_brch import PF, QF, PT, QT, MU_SF, MU_ST, BR_STATUS
 
 
 if not PY2:
-    basestring = str
+    str = str
 
 
 def loadcase(casefile,
@@ -60,7 +60,7 @@ def loadcase(casefile,
     info = 0
 
     # read data into case object
-    if isinstance(casefile, basestring):
+    if isinstance(casefile, str):
         # check for explicit extension
         if casefile.endswith(('.py', '.mat')):
             rootname, extension = splitext(casefile)
@@ -97,7 +97,7 @@ def loadcase(casefile,
                         d['version'] = '1'
 
                         s = {}
-                        for k, v in d.items():
+                        for k, v in list(d.items()):
                             s[k] = v
 
                     s['baseMVA'] = s['baseMVA'][0]  # convert array to float
@@ -108,7 +108,7 @@ def loadcase(casefile,
             elif extension == '.py':      ## from Python file
                 try:
                     if PY2:
-                        execfile(rootname + extension)
+                        exec(compile(open(rootname + extension).read(), rootname + extension, 'exec'))
                     else:
                         exec(compile(open(rootname + extension).read(),
                                      rootname + extension, 'exec'))

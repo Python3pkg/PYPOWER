@@ -339,16 +339,16 @@ def pips(f_fcn, x0=None, A=None, l=None, u=None, xmin=None, xmax=None,
     if opt["verbose"]:
         s = '-sc' if opt["step_control"] else ''
         v = pipsver('all')
-        print('Python Interior Point Solver - PIPS%s, Version %s, %s' %
-                    (s, v['Version'], v['Date']))
+        print(('Python Interior Point Solver - PIPS%s, Version %s, %s' %
+                    (s, v['Version'], v['Date'])))
         if opt['verbose'] > 1:
             print(" it    objective   step size   feascond     gradcond     "
                   "compcond     costcond  ")
             print("----  ------------ --------- ------------ ------------ "
                   "------------ ------------")
-            print("%3d  %12.8g %10s %12g %12g %12g %12g" %
+            print(("%3d  %12.8g %10s %12g %12g %12g %12g" %
                 (i, (f / opt["cost_mult"]), "",
-                 feascond, gradcond, compcond, costcond))
+                 feascond, gradcond, compcond, costcond)))
 
     if feascond < opt["feastol"] and gradcond < opt["gradtol"] and \
         compcond < opt["comptol"] and costcond < opt["costtol"]:
@@ -362,8 +362,8 @@ def pips(f_fcn, x0=None, A=None, l=None, u=None, xmin=None, xmax=None,
         i += 1
 
         # compute update step
-        lmbda = {"eqnonlin": lam[range(neqnln)],
-                 "ineqnonlin": mu[range(niqnln)]}
+        lmbda = {"eqnonlin": lam[list(range(neqnln))],
+                 "ineqnonlin": mu[list(range(niqnln))]}
         if nonlinear:
             if hess_fcn is None:
                 print("pips: Hessian evaluation via finite differences "
@@ -373,9 +373,9 @@ def pips(f_fcn, x0=None, A=None, l=None, u=None, xmin=None, xmax=None,
         else:
             _, _, d2f = f_fcn(x, True)      # cost
             Lxx = d2f * opt["cost_mult"]
-        rz = range(len(z))
+        rz = list(range(len(z)))
         zinvdiag = sparse((1.0 / z, (rz, rz))) if len(z) else None
-        rmu = range(len(mu))
+        rmu = list(range(len(mu)))
         mudiag = sparse((mu, (rmu, rmu))) if len(mu) else None
         dh_zinv = None if dh is None else dh * zinvdiag
         M = Lxx if dh is None else Lxx + dh_zinv * mudiag * dh.T
@@ -477,7 +477,7 @@ def pips(f_fcn, x0=None, A=None, l=None, u=None, xmin=None, xmax=None,
                 L1 = f1 + dot(lam, g1) + dot(mu, h1 + z) - gamma * sum(log(z))
 
                 if opt["verbose"] > 2:
-                    print("   %3d            %10.5f" % (-j, norm(dx1)))
+                    print(("   %3d            %10.5f" % (-j, norm(dx1))))
 
                 rho = (L1 - L) / (dot(Lx, dx1) + 0.5 * dot(dx1, Lxx * dx1))
 
@@ -561,9 +561,9 @@ def pips(f_fcn, x0=None, A=None, l=None, u=None, xmin=None, xmax=None,
             'alphap': alphap, 'alphad': alphad})
 
         if opt["verbose"] > 1:
-            print("%3d  %12.8g %10.5g %12g %12g %12g %12g" %
+            print(("%3d  %12.8g %10.5g %12g %12g %12g %12g" %
                 (i, (f / opt["cost_mult"]), norm(dx), feascond, gradcond,
-                 compcond, costcond))
+                 compcond, costcond)))
 
         if feascond < opt["feastol"] and gradcond < opt["gradtol"] and \
             compcond < opt["comptol"] and costcond < opt["costtol"]:
@@ -584,7 +584,7 @@ def pips(f_fcn, x0=None, A=None, l=None, u=None, xmin=None, xmax=None,
 
     if opt["verbose"]:
         if not converged:
-            print("Did not converge in %d iterations." % i)
+            print(("Did not converge in %d iterations." % i))
 
     # package results
     if eflag != -1:

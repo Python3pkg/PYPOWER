@@ -54,8 +54,8 @@ def t_hessian(quiet=False):
     t = branch[:, T_BUS]       ## list of "to" buses
     nl = len(f)
     nb = len(V)
-    Cf = sparse((ones(nl), (range(nl), f)), (nl, nb))  ## connection matrix for line & from buses
-    Ct = sparse((ones(nl), (range(nl), t)), (nl, nb))  ## connection matrix for line & to buses
+    Cf = sparse((ones(nl), (list(range(nl)), f)), (nl, nb))  ## connection matrix for line & from buses
+    Ct = sparse((ones(nl), (list(range(nl)), t)), (nl, nb))  ## connection matrix for line & to buses
     pert = 1e-8
 
     ##-----  check d2Sbus_dV2 code  -----

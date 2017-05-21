@@ -20,7 +20,7 @@ from pypower.idx_gen import QMAX, QMIN, GEN_BUS, GEN_STATUS, PMIN
 
 
 if not PY2:
-    basestring = str
+    str = str
 
 
 def total_load(bus, gen=None, load_zone=None, which_type=None):
@@ -75,7 +75,7 @@ def total_load(bus, gen=None, load_zone=None, which_type=None):
     want_disp   = (which_type[0] == 'B') | (which_type[0] == 'D')
 
     ## initialize load_zone
-    if isinstance(load_zone, basestring) and (load_zone == 'all'):
+    if isinstance(load_zone, str) and (load_zone == 'all'):
         load_zone = ones(nb, int)                  ## make a single zone of all buses
     elif len(load_zone) == 0:
         load_zone = bus[:, BUS_AREA].astype(int)   ## use areas defined in bus data as zones

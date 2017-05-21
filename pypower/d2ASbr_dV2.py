@@ -33,7 +33,7 @@ def d2ASbr_dV2(dSbr_dVa, dSbr_dVm, Sbr, Cbr, Ybr, V, lam):
 
     @author: Ray Zimmerman (PSERC Cornell)
     """
-    il = range(len(lam))
+    il = list(range(len(lam)))
 
     diaglam = csr_matrix((lam, (il, il)))
     diagSbr_conj = csr_matrix((Sbr.conj(), (il, il)))

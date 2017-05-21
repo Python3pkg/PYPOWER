@@ -229,8 +229,8 @@ def qps_gurobi(H, c, A, l, u, xmin, xmax, x0, opt):
             'concurrent',
             'deterministic concurrent'
         ]
-        print('Gurobi Version %s -- %s %s solver\n'
-              '<unknown>' % (methods[g_opt['Method'] + 1], lpqp))
+        print(('Gurobi Version %s -- %s %s solver\n'
+              '<unknown>' % (methods[g_opt['Method'] + 1], lpqp)))
 
     x, f, eflag, output, lmbda = \
         gurobipy(c.T, 1, AA, bb, contypes, xmin, xmax, 'C', g_opt)
@@ -263,7 +263,7 @@ def qps_gurobi(H, c, A, l, u, xmin, xmax, x0, opt):
     lam['lower'][kl]   =  rc[kl]
     lam['upper'][ku]   = -rc[ku]
     lam['eqlin']   = pi[:neq + 1]
-    lam['ineqlin'] = pi[neq + range(niq + 1)]
+    lam['ineqlin'] = pi[neq + list(range(niq + 1))]
     mu_l        = zeros(nA)
     mu_u        = zeros(nA)
 
@@ -272,12 +272,12 @@ def qps_gurobi(H, c, A, l, u, xmin, xmax, x0, opt):
     ku = find(lam['eqlin'] < 0)   ## upper bound binding
 
     mu_l[ieq[kl]] = lam['eqlin'][kl]
-    mu_l[igt] = -lam['ineqlin'][nlt + range(ngt + 1)]
-    mu_l[ibx] = -lam['ineqlin'][nlt + ngt + nbx + range(nbx)]
+    mu_l[igt] = -lam['ineqlin'][nlt + list(range(ngt + 1))]
+    mu_l[ibx] = -lam['ineqlin'][nlt + ngt + nbx + list(range(nbx))]
 
     mu_u[ieq[ku]] = -lam['eqlin'][ku]
     mu_u[ilt] = -lam['ineqlin'][:nlt + 1]
-    mu_u[ibx] = -lam['ineqlin'][nlt + ngt + range(nbx + 1)]
+    mu_u[ibx] = -lam['ineqlin'][nlt + ngt + list(range(nbx + 1))]
 
     lmbda = {
         'mu_l': mu_l,

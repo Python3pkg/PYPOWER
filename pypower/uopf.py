@@ -65,7 +65,7 @@ def uopf(*args):
         i = on[i]                     ## convert to generator index
 
         if verbose:
-            print('Shutting down generator %d so all Pmin limits can be satisfied.\n' % i)
+            print(('Shutting down generator %d so all Pmin limits can be satisfied.\n' % i))
 
         ## set generation to zero
         ppc["gen"][i, [PG, QG, GEN_STATUS]] = 0
@@ -116,7 +116,7 @@ def uopf(*args):
         else:
             ## shutting something else down helps, so let's keep going
             if verbose:
-                print('Shutting down generator %d.\n' % k1)
+                print(('Shutting down generator %d.\n' % k1))
 
             results0 = deepcopy(results1)
             ppc["bus"] = results0["bus"].copy()     ## use these V as starting point for OPF

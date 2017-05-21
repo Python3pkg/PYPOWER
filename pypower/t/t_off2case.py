@@ -71,7 +71,7 @@ def t_off2case(quiet=False):
     t_is( gen, gen1, 8, [t, ' - gen'] )
 
     gencost1 = gencost0.copy()
-    gencost1[ix_(G, range(NCOST, NCOST + 9))] = c_[array([
+    gencost1[ix_(G, list(range(NCOST, NCOST + 9)))] = c_[array([
         [2, 0, 0, 25,  250],
         [2, 0, 0, 26, 1300],
         [2, 0, 0, 27, 2700],
@@ -97,7 +97,7 @@ def t_off2case(quiet=False):
     t_is( gen, gen1, 8, [t, ' - gen'] )
 
     gencost1 = gencost0.copy()
-    gencost1[ix_(G[1:3], range(NCOST, NCOST + 9))] = c_[array([
+    gencost1[ix_(G[1:3], list(range(NCOST, NCOST + 9)))] = c_[array([
         [2, 0, 0, 26, 1300],
         [2, 0, 0, 27, 2700]
     ]), zeros((2, 4))]
@@ -116,7 +116,7 @@ def t_off2case(quiet=False):
     t_is( gen, gen1, 8, [t, ' - gen'] )
 
     gencost1 = gencost0.copy()
-    gencost1[ix_(G[:2], range(NCOST, NCOST + 9))] = c_[array([
+    gencost1[ix_(G[:2], list(range(NCOST, NCOST + 9)))] = c_[array([
         [2, 0, 0, 25,  250],
         [2, 0, 0, 26, 1300]
     ]), zeros((2, 4))]
@@ -136,12 +136,12 @@ def t_off2case(quiet=False):
     t_is( gen, gen1, 8, [t, ' - gen'] )
 
     gencost1 = gencost0[:, :8].copy()
-    gencost1[ix_(G, range(NCOST, NCOST + 4))] = array([
+    gencost1[ix_(G, list(range(NCOST, NCOST + 4)))] = array([
         [2, 0, 0, 25,  250],
         [2, 0, 0, 26, 1300],
         [2, 0, 0, 27, 2700]
     ])
-    gencost1[ix_(L, range(NCOST, NCOST + 4))] = array([
+    gencost1[ix_(L, list(range(NCOST, NCOST + 4)))] = array([
         [2, -20, -2000, 0, 0],
         [2, -28,  -280, 0, 0]
     ])
@@ -167,7 +167,7 @@ def t_off2case(quiet=False):
     t_is( gen, gen1, 8, [t, ' - gen'] )
 
     gencost1 = gencost0.copy()
-    gencost1[ix_(G, range(NCOST, NCOST + 9))] = c_[array([
+    gencost1[ix_(G, list(range(NCOST, NCOST + 9)))] = c_[array([
         [2, 0, 0, 25, 250],
         [2, 0, 0, 26, 1300],
         [2, 0, 0, 27, 2700]
@@ -194,12 +194,12 @@ def t_off2case(quiet=False):
     t_is( gen, gen1, 8, [t, ' - gen'] )
 
     gencost1 = gencost0[:, :10].copy()
-    gencost1[ix_(G, range(NCOST, NCOST + 7))] = array([
+    gencost1[ix_(G, list(range(NCOST, NCOST + 7)))] = array([
         [2,  0,    0, 25,  250,  0,    0],
         [3, -3, -150,  0,    0, 26, 1300],
         [2,  0,    0, 27, 2700,  0,    0]
     ])
-    gencost1[ix_(L, range(NCOST, NCOST + 7))] = c_[array([
+    gencost1[ix_(L, list(range(NCOST, NCOST + 7)))] = c_[array([
         [2, -20, -2000, 0, 0],
         [2, -28,  -280, 0, 0]
     ]), zeros((2, 2))]
@@ -218,7 +218,7 @@ def t_off2case(quiet=False):
     t_is( gen, gen1, 8, [t, ' - gen'] )
 
     gencost1 = gencost0.copy()
-    gencost1[ix_(G[:2], range(NCOST, NCOST + 9))] = c_[array([
+    gencost1[ix_(G[:2], list(range(NCOST, NCOST + 9)))] = c_[array([
         [2, 0, 0, 25,  250],
         [2, 0, 0, 26, 1300]
     ]), zeros((2, 4))]
@@ -241,12 +241,12 @@ def t_off2case(quiet=False):
     t_is( gen, gen1, 8, [t, ' - gen'] )
 
     gencost1 = gencost0[:, :10].copy()
-    gencost1[ix_(G, range(NCOST, NCOST + 7))] = array([
+    gencost1[ix_(G, list(range(NCOST, NCOST + 7)))] = array([
         [2, 0, 0, 10,  100, 0,     0],
         [3, 0, 0, 20,  500, 50, 2450],
         [2, 0, 0, 25, 1250, 0,     0]
     ])
-    gencost1[ix_(L, range(NCOST, NCOST + 7))] = array([
+    gencost1[ix_(L, list(range(NCOST, NCOST + 7)))] = array([
         [3, -30, -2600, -20, -2000, 0, 0],
         [2, -12,  -840,   0,     0, 0, 0]
     ])
@@ -284,12 +284,12 @@ def t_off2case(quiet=False):
     t_is( gen, gen1, 8, [t, ' - gen'] )
 
     gencost1 = gencost0.copy()
-    gencost1[ix_(G, range(NCOST, NCOST + 9))] = c_[array([
+    gencost1[ix_(G, list(range(NCOST, NCOST + 9)))] = c_[array([
         [2, 0, 0, 25,  250],
         [2, 0, 0, 26, 1300],
         [2, 0, 0, 27, 2700]
     ]), zeros((3, 4))]
-    gencost1[ix_(G + nGL - 1, range(NCOST, NCOST + 9))] = c_[array([
+    gencost1[ix_(G + nGL - 1, list(range(NCOST, NCOST + 9)))] = c_[array([
         [2, 0, 0, 10, 100],
         [2, 0, 0, 20, 100],
         [2, 0, 0, 30,  30]
@@ -357,7 +357,7 @@ def t_off2case(quiet=False):
     gen1[1, [PMIN, PMAX, QMIN, QMAX]] = array([12, 50,   0,  0])
     t_is( gen, gen1, 8, [t, ' - gen'] )
 
-    gencost1[ix_([0, 1, 6], range(NCOST, NCOST + 9))] = array([
+    gencost1[ix_([0, 1, 6], list(range(NCOST, NCOST + 9)))] = array([
         [2, 0, 0, 10, 100,  0,    0, 0, 0],
         [3, 0, 0, 20, 500, 50, 2450, 0, 0],
         [2, 0, 0,  0,   0,  0,    0, 0, 0]

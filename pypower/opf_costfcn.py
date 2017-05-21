@@ -97,8 +97,8 @@ def opf_costfcn(x, om, return_hessian=False):
 
     ##----- evaluate cost gradient -----
     ## index ranges
-    iPg = range(vv["i1"]["Pg"], vv["iN"]["Pg"])
-    iQg = range(vv["i1"]["Qg"], vv["iN"]["Qg"])
+    iPg = list(range(vv["i1"]["Pg"], vv["iN"]["Pg"]))
+    iQg = list(range(vv["i1"]["Qg"], vv["iN"]["Qg"]))
 
     ## polynomial cost of P and Q
     df_dPgQg = zeros(2 * ng)        ## w.r.t p.u. Pg and Qg
@@ -129,18 +129,18 @@ def opf_costfcn(x, om, return_hessian=False):
                 idx = find(abs(ddff - df) == max(abs(ddff - df)))
                 print('Mismatch in gradient')
                 print('idx             df(num)         df              diff')
-                print('%4d%16g%16g%16g' %
-                      (range(len(df)), ddff.T, df.T, abs(ddff - df).T))
+                print(('%4d%16g%16g%16g' %
+                      (list(range(len(df))), ddff.T, df.T, abs(ddff - df).T)))
                 print('MAX')
-                print('%4d%16g%16g%16g' %
+                print(('%4d%16g%16g%16g' %
                       (idx.T, ddff[idx].T, df[idx].T,
-                       abs(ddff[idx] - df[idx]).T))
+                       abs(ddff[idx] - df[idx]).T)))
 
     if not return_hessian:
         return f, df
 
     ## ---- evaluate cost Hessian -----
-    pcost = gencost[range(ng), :]
+    pcost = gencost[list(range(ng)), :]
     if gencost.shape[0] > ng:
         qcost = gencost[ng + 1:2 * ng, :]
     else:
@@ -162,6 +162,6 @@ def opf_costfcn(x, om, return_hessian=False):
     ## generalized cost
     if N is not None and issparse(N):
         d2f = d2f + AA * H * AA.T + 2 * N.T * M * QQ * \
-                sparse((HwC, (range(nw), range(nw))), (nw, nw)) * N
+                sparse((HwC, (list(range(nw)), list(range(nw)))), (nw, nw)) * N
 
     return f, df, d2f

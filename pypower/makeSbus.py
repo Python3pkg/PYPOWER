@@ -30,7 +30,7 @@ def makeSbus(baseMVA, bus, gen):
     nb = bus.shape[0]
     ngon = on.shape[0]
     ## connection matrix, element i, j is 1 if gen on(j) at bus i is ON
-    Cg = sparse((ones(ngon), (gbus, range(ngon))), (nb, ngon))
+    Cg = sparse((ones(ngon), (gbus, list(range(ngon)))), (nb, ngon))
 
     ## power injected by gens plus power injected by loads converted to p.u.
     Sbus = ( Cg * (gen[on, PG] + 1j * gen[on, QG]) -

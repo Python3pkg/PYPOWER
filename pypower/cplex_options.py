@@ -15,7 +15,7 @@ from pypower.util import feval
 
 
 if not PY2:
-    basestring = str
+    str = str
 
 
 def cplex_options(overrides=None, ppopt=None):
@@ -83,7 +83,7 @@ def cplex_options(overrides=None, ppopt=None):
 
     ## second argument
     if ppopt != None:
-        if isinstance(ppopt, basestring):        ## 2nd arg is FNAME (string)
+        if isinstance(ppopt, str):        ## 2nd arg is FNAME (string)
             fname = ppopt
             have_ppopt = False
         else:                    ## 2nd arg is ppopt (MATPOWER options vector)
@@ -129,13 +129,13 @@ def cplex_options(overrides=None, ppopt=None):
 
     ##-----  apply overrides  -----
     if overrides is not None:
-        names = overrides.keys()
+        names = list(overrides.keys())
         for k in range(len(names)):
             if isinstance(overrides[names[k]], dict):
-                names2 = overrides[names[k]].keys()
+                names2 = list(overrides[names[k]].keys())
                 for k2 in range(len(names2)):
                     if isinstance(overrides[names[k]][names2[k2]], dict):
-                        names3 = overrides[names[k]][names2[k2]].keys()
+                        names3 = list(overrides[names[k]][names2[k2]].keys())
                         for k3 in range(len(names3)):
                             opt[names[k]][names2[k2]][names3[k3]] = overrides[names[k]][names2[k2]][names3[k3]]
                     else:

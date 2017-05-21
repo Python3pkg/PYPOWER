@@ -227,10 +227,10 @@ def opf_hessfcn(x, lmbda, om, Ybus, Yf, Yt, ppopt, il=None, cost_mult=1.0):
         d2G_err = max(max(abs(d2G - num_d2G)))
         d2H_err = max(max(abs(d2H - num_d2H)))
         if d2f_err > 1e-6:
-            print('Max difference in d2f: %g' % d2f_err)
+            print(('Max difference in d2f: %g' % d2f_err))
         if d2G_err > 1e-5:
-            print('Max difference in d2G: %g' % d2G_err)
+            print(('Max difference in d2G: %g' % d2G_err))
         if d2H_err > 1e-6:
-            print('Max difference in d2H: %g' % d2H_err)
+            print(('Max difference in d2H: %g' % d2H_err))
 
     return d2f + d2G + d2H

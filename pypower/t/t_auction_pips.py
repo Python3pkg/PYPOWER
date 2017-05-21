@@ -72,7 +72,7 @@ def t_auction_pips(quiet=False):
     cp5 = cp.copy()
     i2e = bus.bus_i
     e2i = sparse((max(i2e), 1))
-    e2i[i2e] = range(bus.size())
+    e2i[i2e] = list(range(bus.size()))
     G = find( isload(gen) == False )   ## real generators
     L = find( isload(gen) )   ## dispatchable loads
     Gbus = e2i[gen.gen_bus[G]]

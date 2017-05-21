@@ -51,7 +51,7 @@ def pfsoln(baseMVA, bus0, gen0, branch0, Ybus, Yf, Yt, V, ref, pv, pq):
         ## build connection matrix, element i, j is 1 if gen on(i) at bus j is ON
         nb = bus.shape[0]
         ngon = on.shape[0]
-        Cg = csr_matrix((ones(ngon), (range(ngon), gbus)), (ngon, nb))
+        Cg = csr_matrix((ones(ngon), (list(range(ngon)), gbus)), (ngon, nb))
 
         ## divide Qg by number of generators at the bus to distribute equally
         ngg = Cg * Cg.sum(0).T    ## ngon x 1, number of gens at this gen's bus
@@ -59,8 +59,8 @@ def pfsoln(baseMVA, bus0, gen0, branch0, Ybus, Yf, Yt, V, ref, pv, pq):
         gen[on, QG] = gen[on, QG] / ngg
 
         ## divide proportionally
-        Cmin = csr_matrix((gen[on, QMIN], (range(ngon), gbus)), (ngon, nb))
-        Cmax = csr_matrix((gen[on, QMAX], (range(ngon), gbus)), (ngon, nb))
+        Cmin = csr_matrix((gen[on, QMIN], (list(range(ngon)), gbus)), (ngon, nb))
+        Cmax = csr_matrix((gen[on, QMAX], (list(range(ngon)), gbus)), (ngon, nb))
         Qg_tot = Cg.T * gen[on, QG]## nb x 1 vector of total Qg at each bus
         Qg_min = Cmin.sum(0).T       ## nb x 1 vector of min total Qg at each bus
         Qg_max = Cmax.sum(0).T       ## nb x 1 vector of max total Qg at each bus
